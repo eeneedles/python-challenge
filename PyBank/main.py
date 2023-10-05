@@ -7,9 +7,10 @@ csvpath = os.path.join('Resources','budget_data.csv')
 with open(csvpath) as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
     print(csvreader)
- 
+
+    #Store data header with option to print
     csv_header = next(csvreader)
-    print(f"CSV Header: {csv_header}")
+    #print(f"CSV Header: {csv_header}")
 
     months = 0
     net_total = 0
@@ -32,10 +33,19 @@ with open(csvpath) as csvfile:
             previous = profit_loss
         else:
             previous = profit_loss
-    #Create financial analysis dataset displaying month total, net total of profit/losses, average change in profit/losses, and Greatest Increase and Decrease in Profits        
-    print(months)
-    print(f"Total: ${net_total}")
-
+        #Calculate average change
+        def average(change):
+            length = len(change)
+            total = 0.0
+            for change_event in change:
+                total += change_event
+            return total / length
     
-
+    #Create financial analysis dataset displaying month total, net total of profit/losses, average change in profit/losses, and Greatest Increase and Decrease in Profits        
+    print("Financial Analysis")
+    print("---------------------------")
+    print(f"Total Months: {months}")
+    print(f"Total: ${net_total}")
+    print(f"Average Change: ${average}")
+    
 
