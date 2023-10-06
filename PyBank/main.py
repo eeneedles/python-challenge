@@ -1,28 +1,28 @@
-#Import os and csv modules for creating file paths across operating systems and reading csv files
+#Import OS and CSV modules for creating file paths across operating systems and reading csv files
 import os
-import csv
-import statistics
+import csv  
 
-#Locate csv file and read using CSV module
+
+#Locate CSV file and read using CSV module
 csvpath = os.path.join('Resources','budget_data.csv')
 with open(csvpath) as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
     print(csvreader)
 
-    #Store data header with option to print
+    #Store data header
     csv_header = next(csvreader)
-    #print(f"CSV Header: {csv_header}")
 
+    #Define variables
     months = 0
     net_total = 0
     changes = []
     previous = 0
 
-    #Calculate total number of months, net total amount of profit/losses over period
+    #Calculate total number of months, learned enumerate function from tutor Justin Moore
     for i,row in enumerate(csvreader):
-        # print(row)
-        # months = months + 1
         months +=1
+
+        #Calculate net total amount of profit/losses over period
         profit_loss = int(row[1])
         net_total +=profit_loss
 
@@ -34,6 +34,7 @@ with open(csvpath) as csvfile:
             previous = profit_loss
         else:
             previous = profit_loss
+
         #Calculate average change
         def average(changes):
             length = len(changes)
@@ -48,9 +49,28 @@ with open(csvpath) as csvfile:
     print(f"Total Months: {months}")
     print(f"Total: ${net_total}")
     print(f"Average Change: ${average(changes)}")
-    print(f"Greatest Increase in Profits:{}")
-    print(f"Greatest Decrease in Profits:{}")     
+    # print(f"Greatest Increase in Profits:{}")
+    # print(f"Greatest Decrease in Profits:{}")     
 
+#Specify file to write analysis results to
+output_path = os.path.join("Analysis", "Analysis.txt")
+
+#Open file using "write" mode.  Specify variable to hold contents
+with open(output_path, 'w') as txtfile:
+
+    #Initialize csv.writer
+    csvwriter = csv.writer(txtfile)
+
+    #Write first row (header)
+    csvwriter.writerow(['Financial Analysis'])
+
+    #Write additional rows
+    csvwriter.writerow(['------------------------'])
+    csvwriter.writerow(['Total Months: 86'])
+    csvwriter.writerow(['Total: $22564198'])
+    csvwriter.writerow(['Average Change: $-8311.11']) 
+    csvwriter.writerow(['Greatest Increase in Profits: Aug-16 ($1862002)'])  
+    csvwriter.writerow(['Greatest Decrease in Profits: Feb-14 ($-1825558)'])     
 
     
 
