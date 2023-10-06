@@ -1,6 +1,7 @@
 #Import os and csv modules for creating file paths across operating systems and reading csv files
 import os
 import csv
+import statistics
 
 #Locate csv file and read using CSV module
 csvpath = os.path.join('Resources','budget_data.csv')
@@ -34,18 +35,22 @@ with open(csvpath) as csvfile:
         else:
             previous = profit_loss
         #Calculate average change
-        def average(change):
-            length = len(change)
+        def average(changes):
+            length = len(changes)
             total = 0.0
-            for change_event in change:
+            for change_event in changes:
                 total += change_event
             return total / length
-    
+
     #Create financial analysis dataset displaying month total, net total of profit/losses, average change in profit/losses, and Greatest Increase and Decrease in Profits        
     print("Financial Analysis")
     print("---------------------------")
     print(f"Total Months: {months}")
     print(f"Total: ${net_total}")
-    print(f"Average Change: ${average}")
+    print(f"Average Change: ${average(changes)}")
+    print(f"Greatest Increase in Profits:{}")
+    print(f"Greatest Decrease in Profits:{}")     
+
+
     
 
