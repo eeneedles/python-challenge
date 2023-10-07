@@ -8,18 +8,16 @@ with open(csvpath) as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
     print(csvreader)
 
-    #Store data header with optional print statement
+    #Store data header
     csv_header = next(csvreader)
-    print(f"CSV Header: {csv_header}")
 
-    votes = 0
-
-    for i,row in enumerate(csvreader):
-        votes +=1
-
-
-
-
+    #Define variables
+    votes_total= 0
+    
+    #Calculate total number of votes
+    for row in csvreader:
+        votes_total = votes_total + 1
+    
 
 
 
@@ -27,7 +25,11 @@ with open(csvpath) as csvfile:
 
 
 
-        print(f"Total Votes: {votes}")
+
+
+
+    #Print vote total to terminal
+    print(f"Total Votes: {votes_total}")
 
 
 #Specify file to write analysis results to
