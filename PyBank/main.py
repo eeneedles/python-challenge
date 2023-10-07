@@ -18,7 +18,7 @@ with open(csvpath) as csvfile:
     changes = []
     previous = 0
 
-    #Calculate total number of months, learned enumerate function from tutor Justin Moore
+    #Calculate total number of months -  learned enumerate function from tutor Justin Moore
     for i,row in enumerate(csvreader):
         months +=1
 
@@ -28,7 +28,6 @@ with open(csvpath) as csvfile:
 
         #Calculate changes in profit/losses over period
         if i > 0:
-            
             change = profit_loss - previous
             changes.append(change)
             previous = profit_loss
@@ -42,6 +41,18 @@ with open(csvpath) as csvfile:
             for change_event in changes:
                 total += change_event
             return total / length
+        
+    #Calculate greatest increase in profit
+    greatest_increase = 0
+    for i in changes:
+        if i > greatest_increase:
+            greatest_increase = i
+
+    #Calculate greatest decrease in profit
+    greatest_decrease = 0
+    for i in changes:
+        if i < greatest_decrease:
+            greatest_decrease = i
 
     #Create financial analysis dataset displaying month total, net total of profit/losses, average change in profit/losses, and Greatest Increase and Decrease in Profits        
     print("Financial Analysis")
@@ -49,8 +60,8 @@ with open(csvpath) as csvfile:
     print(f"Total Months: {months}")
     print(f"Total: ${net_total}")
     print(f"Average Change: ${average(changes)}")
-    # print(f"Greatest Increase in Profits:{}")
-    # print(f"Greatest Decrease in Profits:{}")     
+    print(f"Greatest Increase in Profits: ${greatest_increase}")
+    print(f"Greatest Decrease in Profits: ${greatest_decrease}")     
 
 #Specify file to write analysis results to
 output_path = os.path.join("Analysis", "Analysis.txt")
