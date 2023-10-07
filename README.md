@@ -7,4 +7,4 @@ PyPoll includes a Resource folder containing the CSV data file with voter IDs, c
 
 I think that dictionaries could have been utilized in both PyBank and PyPoll to facilitate calculations and with printing the results correctly to the terminal.  I hope to return to the project at a later time to fix this.  I also intend to use the float data type to adjust the result for the average change in profit in PyBank.
 
-Credit to tutor Justin Moore for assistance with using the enumerate function to calculate the total number of months for the PyBanks profits and losses.
+Credit to tutor Justin Moore for assistance with using the enumerate function to calculate the total number of months for the PyBanks profits and losses on line 22.
